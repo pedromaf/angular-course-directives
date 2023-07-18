@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <nav aria-label="Pages">
+      <ul class="pagination">
+        <li class="page-item" [ngClass]="{ disabled: getPreviousButtonDisabledState() }">
+          <a class="page-link" href="#" (click)="setPreviousPage()">Previous</a>
+        </li>
+        <ng-container *ngFor="let image of images; let i = index">
+          <li class="page-item" *ngIf="checkPageVisibility(i)">
+            <a class="page-link" [ngClass]="{ active: i === currentPage}" href="#" (click)="setPage(i)">{{ i + 1 }}</a>
+          </li>
+        </ng-container>
+        <li class="page-item" [ngClass]="{ disabled: getNextButtonDisabledState() }">
+          <a class="page-link" href="#" (click)="setNextPage()">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="row">
+    <h4>{{ images[currentPage].title }}</h4>
+    <img [src]="images[currentPage].url">
+  </div>
+</div>
